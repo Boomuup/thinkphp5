@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的个人空间</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/index/css/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" rel="script" src="/static/index/js/jquery.min.js"></script>
+<script type="text/javascript" rel="script" src="/static/index/js/index.js"></script>
+<script type="text/javascript" rel="script" src="/static/index/js/script.js"></script>
+<body>
+<!--<object style="border:0px" type="text/x-scriptlet" data="head.html" width=100% height=500px> </object>-->
+
+<div class="top">
+    <div class="myself-wrap">
+        <input class="mysearchbox" type="text" maxlength="100">
+        <input class="myselfbox" type="button" maxlength="100" value="     Tea   ZhangTing">
+        <div class="mywelcome">
+            欢迎来到 Tea 的个人空间
+        </div>
+    </div>
+    <div class="head">
+        <div class="saying">
+            磨难很爱我，一度将我连根拔起。从惊慌失措到心力交瘁，我孤身一人，但并不孤独无依。依赖那些依赖我的人，信任那些信任我的人，帮助那些给予我帮助的人。如果我愿意，可以分裂成无数面镜子，让他们看见我，就像看见自己。察言观色和模仿学习是我的领域。像每个深受创伤的人那样，最终，我学会了随遇而安。
+        </div>
+        <div class="portrait">
+            <span></span><img src="/static/index/images/portrait1.jpg">
+        </div>
+    </div>
+</div>
+
+<div class="content-nav">
+    <ul class="nav">
+        <li class="selected"><a href="<?php echo Url('home/index/index').'?&nav=1';?>"><img src="/static/index/images/home.png"><br>首页</a></li>
+        <li><a href="<?php echo Url('home/index/my_info').'?&nav=2';?>"><img src="/static/index/images/info.png"><br>个人档案</a></li>
+        <li><a href="<?php echo Url('home/index/my_life').'?&nav=3';?>"><img src="/static/index/images/view.png"><br>路上风景</a></li>
+        <li><a href="<?php echo Url('home/index/my_diary').'?&nav=4';?>#m-diary"><img src="/static/index/images/dairy.png"><br>更新日志</a></li>
+        <li><a href="<?php echo Url('home/index/my_word').'?&nav=5';?>#m-word"><img src="/static/index/images/dia.png"><br>一些话</a></li>
+    </ul>
+</div>

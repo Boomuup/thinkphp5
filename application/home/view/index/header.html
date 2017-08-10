@@ -1,0 +1,61 @@
+<script>
+    var zhuce_html  = "<?php echo url('home/index/zhuce');?>";
+    var denglu_html = "<?php echo url('home/index/login');?>";
+    var zhuce_html_str = '<div class="BOX">'+
+          '<div class="left_div">'+
+          '<button type="button" class="change_btn">登录</button>'+
+          '</div>'+
+
+          '<div class="right_div" id="zhuce_area">'+
+          '<p class="zhuce_type"><a>个人注册</a></p>'+
+          '<p class="msg"></p>'+
+          '<form action="'+zhuce_html+'" method="post">'+
+          '<input class="username" type="text" placeholder="用户名" name="username" value=""/><br><br>'+
+          '<input class="email" type="text" placeholder="邮箱号码"  name="email" value=""/><br><br>'+
+          '<p class="line_p1"><input class="code" type="text" placeholder="验证码" name="inputCode" value=""><button class="getCode" onclick="AjaxSendCode(this);" type="button">获取验证码</button></p><br>'+
+          '<input class="password" type="password" placeholder="6~16个字符(英文字母或数字，区分大小写)" name="email" value=""/>'+
+          '<p class="line_p2"><input type="checkbox" class="checkbox" checked name="check"> 阅读并接受协议<a href="">《注册协议》</a></p>'+
+          '<input type="button" class="submit_btn" onclick="submitForm(this);" value="立即注册">'+
+          '</form>'+
+          '</div>'+
+
+          '<div class="right_div" id="login_area" style="display:none;">'+
+          '<p class="zhuce_type">登录</p>'+
+          '<p class="msg"></p>'+
+          '<form action="'+denglu_html+'" method="post">'+
+          '<input class="username" type="text" placeholder="邮箱/用户名" name="username" value=""/><br><br>'+
+          '<input class="password" type="password" placeholder="密码" name="email" value=""/>'+
+          '<p class="line_p2"><input type="checkbox" class="autoLogin" checked name="check"> 自动登录<a href="">忘记密码？</a></p>'+
+          '<input type="button" class="submit_btn" onclick="login(this);" value="登录"><br><br>'+
+          '<p class="line_p3"><a href="javascript:void(0)" class="weixin_login">微信登录</a><a href="javascript:void(0)" class="qq_login">QQ登录</a></p>'+
+          '</form>'+
+          '</div>'+
+
+          '</div>';
+</script>
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=534012657&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:534012657:53" alt="欢迎来到英雄联盟！" title="欢迎来到英雄联盟！"/></a>
+<header>
+  <div class="quotes">
+    <p>初遇时，她的微笑，她往日的深情、承诺和傻劲，两个人共度的美丽时刻，一一印在回忆里，今天的感情已经比不上从前，但是我爱着恋着往日的她，舍不得离开。</p>
+    <div class="text5">记录・回忆</div>
+    <div class="flower"><img src="/public/static/home/images/flower.jpg"></div>
+  </div>
+  <!--nav begin-->
+  <div id="nav">
+    <ul>
+      <li><a href="/home">首页</a></li>
+      <li><a href="#">关于我</a></li>
+      <li><a href="#">碎言碎语</a></li>
+      <li><a href="#">慢生活</a></li>
+      <li><a href="#">模板分享</a></li>
+      <li><a href="#">永无止境</a></li>
+      <li><a href="/home/index/message.html">留言板</a></li>
+    </ul>
+  <?php if($login=session('login')){?>
+    <p class="btn_p"><a href="javascript:void(0)" class=""><?php echo $login['username'];?></a>&nbsp;<a href="javascript:void(0)" onclick="login_out(this);" class="">退出</a></p>
+  <?php }else{?>
+    <p class="btn_p"><a href="javascript:void(0)" class="denglu_btn">登录</a>&nbsp;<a href="javascript:void(0)" class="zhuce_btn">注册</a></p>
+  <?php }?>
+  </div>
+  <!--nav end--> 
+</header>

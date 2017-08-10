@@ -1,0 +1,119 @@
+*{include file='public/_meta'/}*
+
+<title>文章分类管理</title>
+</head>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-admin-add" action="" method="post">
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">文章所属分类：</label>
+		<div class="formControls col-xs-6 col-sm-6"> <span class="select-box" style="width:150px;">
+	<select class="select" name="pid" size="1">
+			<option value="0" selected >顶级分类</option>
+			<?php foreach($category as $key=>$val){ ?>
+				<option value="<?php echo $val['catid'];?>" <?php echo isset($edit_data) && $val['catid']==$edit_data['pid']?'selected':'';?> ><?php echo $val['name'];?></option>
+			<?php } ?>
+	</select>
+	</span> </div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>分类名称：</label>
+		<div class="formControls col-xs-6 col-sm-6">
+			<input type="text" class="input-text" value="<?php if(isset($edit_data)) echo $edit_data['name'];?>" placeholder="" id="name" name="name">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">关键词：</label>
+		<div class="formControls col-xs-6 col-sm-6">
+			<input type="text" class="input-text" autocomplete="off" value="<?php if(isset($edit_data)) echo $edit_data['keyword'];?>" placeholder=""  name="keyword">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3">描述：</label>
+		<div class="formControls col-xs-6 col-sm-6">
+			<input type="text" class="input-text" value="<?php if(isset($edit_data)) echo $edit_data['description'];?>" placeholder="" name="description">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>是否显示：</label>
+		<div class="formControls col-xs-6 col-sm-6 skin-minimal">
+			<div class="radio-box">
+				<input type="radio" id="sex-1" name="is_show" value="1" checked <?php if(isset($edit_data) && $edit_data['is_show']==1) echo 'checked';?> />
+				<label for="sex-1">是</label>
+			</div>
+			<div class="radio-box">
+				<input type="radio" id="sex-2" name="is_show" value="2" <?php if(isset($edit_data) && $edit_data['is_show']==2) echo 'checked';?> />
+				<label for="sex-2">否</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="row cl" style="text-align: center;margin: 0 auto;">
+		<div class="col-xs-6 col-sm-6 col-xs-offset-4 col-sm-offset-3">
+			<input type="hidden" name="catid" value="<?php echo input('get.catid');?>">
+			<input type="hidden" name="page" value="<?php echo input('get.page');?>">
+			<input type="hidden" class="ajax-url" value="<?php echo url('/admin/article/'.A_NAME);?>">
+			<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+	</form>
+</article>
+<style>
+	/*表单验证错误信息样式*/
+	form .error{
+		background-color: #fff;
+		color: red;
+	}
+</style>
+*{include file='public/_footer'/}*
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		errorPlacement: function(error, element) {
+			error.appendTo(element.parent());
+		},
+		errorElement: "Callback",//默认在选择验证的元素后面添加错误信息
+		rules:{
+			name:{
+				required:true,
+				minlength:1,
+				maxlength:20
+			},
+
+			messages: {
+				name:{
+					required:'分类名称不能为空',
+					minlength:'字数长度不能<1',
+					maxlength:'字数长度不能>20'
+				},
+
+			}
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit({
+				type : "post",
+				dataType : "json",
+				success: function (data) {
+					if(data.success==1){
+						show_msg(data.msg);
+						layer.closeAll();
+					}
+				}});
+		}
+	});
+
+});
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

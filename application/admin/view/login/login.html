@@ -1,0 +1,76 @@
+﻿*{include file='public/_meta'/}*
+  <script src="http://static.geetest.com/static/tools/gt.js"></script><!--geetest验证码js库-->
+<title>后台登录</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<script>
+  var get_code_url   = "<?php echo url('start/index/get_geetest_code');?>";
+  var check_code_url = "<?php echo url('start/index/check_geetest_code');?>";
+</script>
+<input type="hidden" id="TenantId" name="TenantId" value="" />
+<!-- <div class="header"></div> -->
+<div class="loginWraper">
+  <div id="loginform" class="loginBox">
+    <form class="form form-horizontal" action="#>" method="post">
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+        <div class="formControls col-xs-8">
+          <input name="admin_name" type="text" placeholder="账户" class="input-text size-L">
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+        <div class="formControls col-xs-8">
+          <input id="" name="admin_password" type="password" placeholder="密码" class="input-text size-L">
+        </div>
+      </div>
+      <!-- <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <input class="input-text size-L" name="code" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
+          <img src="<?php echo captcha_src();?>" class="code"> <a id="kanbuq" href="javascript:;" onclick="change_code();">看不清，换一张</a> </div>
+      </div> -->
+       <div class="row cl">
+         <div id="captcha" style="width: 300px;margin: 0 auto;"></div>
+      </div> 
+
+      <script>
+          //验证码更换
+          function change_code(){
+            var attr = "<?php echo captcha_src();?>?r="+Math.random();
+            $('.code').attr('src',attr);
+          }
+      </script>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <label for="online">
+            <input type="checkbox" name="online" id="online" value="">
+            使我保持登录状态</label>
+        </div>
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <input name="" type="button" onclick="check_code(this);" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+          <input name="" onclick="location.href='<?php echo url('start/index/index');?>';" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">七里香后台管理系统</div>
+
+<script type="text/javascript" src="/public/static/admin/static/h-ui/js/H-ui.min.js"></script>
+<!--此乃百度统计代码，请自行删除-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script type="text/javascript" src="/public/static/public/js/slide_code.js"></script>
+</body>
+</html>

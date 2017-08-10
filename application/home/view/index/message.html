@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>*{$head_title}*</title>
+    <meta name="Keywords" content="博客模板,情侣博客模板" >
+    <meta name="Description" content="情侣博客模板" >
+    <link rel="icon" href="/public/favicon.ico" sizes="20x20" />
+    <link href="/public/static/home/css/index.css" rel="stylesheet">
+    <link href="/public/static/home/css/message.css" rel="stylesheet">
+    <link href="/public/static/home/css/zhuce.css" rel="stylesheet">
+    <script src="/public/static/public/js/jquery-1.11.3.min.js"></script>
+    <script src="/public/static/public/layer_pc/layer.js"></script>
+    <script src="/public/static/home/js/modernizr.js"></script><!--[if lt IE 9]-->
+    <script type="text/javascript" src="/public/static/public/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/public/static/public/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var ue = UE.getEditor('container');
+        });
+    </script>
+</head>
+<body>
+{include file='index/header'/}
+<script type="text/javascript" src="/public/static/home/js/form.js"></script>
+<div class="BigBox">
+    <form action="" method="post">
+    <p class="say">留言板</p>
+    <p class="say say_one">主人寄语</p>
+    <div class="master_sayContent">
+        <p>欢迎光临我的空间</p>
+    </div>
+    <div class="ueditor">
+        <!-- 加载编辑器的容器 -->
+        <script id="container" name="content" width="100%" height="100%"></script>
+    </div>
+     <p class="btn_p"><input type="button" class="submit_btn" value="发表留言"></p>
+    </form>
+    <div class="p_title">
+        <i>留言(3)</i> 显示签名档
+        <em><a href="javascript:volid(0)">上一页</a>&nbsp;&nbsp;<a href="javascript:volid(0)">下一页</a></em>
+        <div class="clean_float"></div>
+    </div>
+    <div class="messageBox">
+        <div class="messageLine">
+            <span class="left">
+                <a class="logo" href=""><img src="/public/static/public/face/1.png" alt="图片" title="头像" width="100%" height="100%"></a>
+            </span>
+            <span class="right">
+                <p><a href="">蓝色海洋</a></p>
+            </span>
+            <div class="clean_float"></div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<script>
+//    //layer.msg('欢迎来到我的博客，好开心哈！');
+
+    $('.btn').click(function(){
+
+//        layer.open({
+//            area: ['500px', '300px'],
+//            title: '提示信息哈哈',
+//            type: 1,
+//            content: '<div class="content">你好吗？欢迎来到我的博客</div>'
+//        });
+
+        layer.confirm('确定要删除吗？不可恢复确定要删除吗？不可恢复确定要删除吗？不可恢复', {
+            shadeClose:false,//点击外层关闭提示
+            //time: 3000,//自动关闭时间
+            anim: 0,//动画
+            closeBtn: 1,//按钮关闭类型
+            btnAlign: 'c',//按钮对齐
+            title: '提示信息',
+            icon: 7,
+            btn: ['确定', '取消',] //可以无限个按钮
+            ,btn1:function(index, layero){
+                //按钮【按钮三】的回调
+                layer.msg('已删除', {icon: 1,offset: '10px',area: ['200px'],});
+            },btn2:function(index, layero){
+                //按钮【按钮一】的回调
+                layer.msg('已取消',{icon: 7,offset: '10px',area: ['200px'],});
+            },
+
+        });
+
+
+    });
+</script>
+<footer>
+    <p>Design by <a href="/" target="_blank">DanceSmile</a></p>
+</footer>
+</body>
+</html>

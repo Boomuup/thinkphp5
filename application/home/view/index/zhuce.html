@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link href="/public/static/public/css/reset.css" rel="stylesheet">
+    <link href="/public/static/home/css/zhuce.css" rel="stylesheet">
+    <script src="/public/static/public/js/jquery-1.11.3.min.js"></script>
+    <script src="/public/static/public/layer_pc/layer.js"></script>
+    <script src="/public/static/home/js/form.js"></script>
+</head>
+<body>
+<div class="BOX">
+    <div class="left_div">
+        <button type="button" class="change_btn">登录</button>
+    </div>
+
+    <div class="right_div" id="zhuce_area">
+        <p class="zhuce_type"><a>个人注册</a></p>
+        <p class="msg"></p>
+        <form action="*{:url('home/index/zhuce')}*" method="post">
+            <input class="username" type="text" placeholder="用户名" name="username" value=""/><br><br>
+            <input class="email" type="text" placeholder="邮箱号码" name="email" value=""/><br><br>
+            <p class="line_p1"><input class="code" type="text" placeholder="验证码" name="code" value=""><button class="getCode" type="button">获取验证码</button></p><br>
+            <input class="password" type="password" placeholder="6~16个字符(英文字母或数字，区分大小写)" name="email" value=""/>
+            <p class="line_p2"><input type="checkbox" class="checkbox" checked name="check"> 阅读并接受协议<a href="">《注册协议》</a></p>
+            <input type="button" class="submit_btn" value="立即注册">
+        </form>
+    </div>
+
+    <div class="right_div" id="login_area" style="display:none;">
+        <p class="zhuce_type">登录</p>
+        <p class="msg"></p>
+        <form action="*{:url('home/index/login')}*" method="post">
+            <input class="username" type="text" placeholder="邮箱/用户名" name="username" value=""/><br><br>
+            <input class="password" type="password" placeholder="密码" name="email" value=""/>
+            <p class="line_p2"><input type="checkbox" checked name="check"> 自动登录<a href="">忘记密码？</a></p>
+            <input type="button" class="submit_btn" value="登录"><br><br>
+            <p class="line_p3"><a href="javascript:void(0)" class="weixin_login">微信登录</a><a href="javascript:void(0)" class="qq_login">QQ登录</a></p>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

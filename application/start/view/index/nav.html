@@ -1,0 +1,79 @@
+
+<div class="nav-div">
+    <div class="bg-white bg-white-nav">
+        <div class="wpn cl bg-white">
+            <ul class="nav-hd cl">
+                <?php foreach($nav_data as $key=>$val){ ?>
+                    <li>
+                        <a href="<?php if($val['children'] && $key+1==count($nav_data)){echo 'javascript:;';}else{echo url($val['nav_url']);}?>" target="_self"><?php echo $val['nav_name'];?><i class="<?php echo $key+1==count($nav_data)?'icon-down':'';?>"></i>	</a>
+                        <?php if($val['children']){?>
+                            <div class="subnav-hd cl">
+                                <ul class="subnav-ct-hd">
+                                    <?php foreach($val['children'] as $k=>$v){ ?>
+                                        <li>
+                                            <a href="<?php echo url($v['nav_url']);?>" target="_blank"><?php echo $v['nav_name'];?></a>
+                                        </li>
+                                    <?php }?>
+                                </ul>
+                            </div>
+                        <?php }?>
+                    </li>
+                <?php }?>
+            </ul>
+            <div class="y cl">
+                <div class="search-hd cl">
+                    <form action="#" method="get" id="searchForm">
+                        <div class="search-status">
+                            <div class="search-filter">
+                                <a href="javascript:;"><span class="tit">作品</span><i class="icon-down"></i></a>
+                                <ul class="options">
+                                    <li><a href="javascript:;" data-rel="project">作品</a></li>
+                                    <li><a href="javascript:;" data-rel="experience">文章</a></li>
+                                    <li><a href="javascript:;" data-rel="source">源文件</a></li>
+                                    <li><a href="javascript:;" data-rel="designer">设计师</a></li>
+                                    <li><a href="javascript:;" data-rel="inspiration">灵感</a></li>
+                                    <li><a href="javascript:;" data-rel="talk">话题</a></li>
+                                </ul>
+                            </div>
+                            <div class="search-select">
+                                <input type="text" class="search-val" placeholder="请输入您要查找的内容" autocomplete="off" value="" name="keywords" id="keywords"/>
+                                <ul class="options">
+                                    <li><a href="javascript:;">icon</a></li>
+                                    <li><a href="javascript:;">春节</a></li>
+                                    <li><a href="javascript:;">app</a></li>
+                                    <li><a href="javascript:;">作品集</a></li>
+                                    <li><a href="javascript:;">AE</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="hidden" name="type" value='project' id="sType"/>
+                        <a class="Hui-iconfont search-hd-btn" href="javascript:;">&#xe683;</a>
+                    </form>
+                </div>
+                <?php if($login = session('login')){?>
+                        <ul class="quick-hd cl">
+                            <li class="quick-item">
+                                <a class="quick-toggle" href="javascript:;">
+                                    <img style="width: 53px;height: 53px;position: absolute;pointer-events: none;left: 4px;top: 4px;" src="<?php echo $user_info['logo'] ? $user_info['logo'] : '/public/static/public/face/'.$user_info['face'].'.png';?>"/>
+                                </a>
+                                <ul class="quick-menu quick-list">
+                                    <li><a href="<?php echo url('start/user/index');?>">个人资料</a></li>
+                                    <li><a href="">我的收藏</a></li>
+                                    <li><a href="">我的简历</a></li>
+                                    <li><a href="">修改资料</a></li>
+                                    <li><a href="javascript:;" onclick="login_out(this);">退出登录</a></li>
+                                </ul>
+                            </li>
+                            <div class="clean_float"></div>
+                        </ul>
+
+                <?php }else{?>
+                    <div class="login-hd">
+                        <a href="javascript:;" class="denglu_btn"><i class="Hui-iconfont">&#xe60d;</i> 登录</a>
+                    </div>
+                <?php }?>
+            </div>
+        </div><!-- wpn -->
+    </div>
+    <!--<a href="javascript:;" id="get-ip" style="position: absolute;top:28px;right: 50px;">位置：<?php echo get_ipCity() ? implode(' ',get_ipCity()) : '';?></a>-->
+</div>

@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content=""/>
+	<meta name="keywords" content=""/>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<title>个人资料-七里香</title>
+	<link rel="stylesheet" href="/public/static/start/css/user.min.css">
+    <link rel="stylesheet" href="/public/static/admin/lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" href="/public/static/start/css/uicn.v1.css">
+    <link rel="stylesheet" href="/public/static/start/css/header.v1.css">
+    <link rel="stylesheet" href="/public/static/start/css/footer.v1.css">
+    <link rel="stylesheet" href="/public/static/start/css/zhuce.css">
+
+    <script src="/public/static/public/js/jquery-1.11.3.min.js"></script>
+    <script src="/public/static/start/js/header.v1.js"></script>
+    <script type="text/javascript" src="/public/static/public/layer_pc/layer.js"></script>
+
+</head>
+<body>
+*{include file="/index/nav"/}*
+
+<div class="wrapper cf">
+        <nav class="leftnav" id="leftNav">
+	<ul>
+		<li><a href="/setting/user/" class="active">个人资料</a></li>
+		<li>
+            <a href="/setting/ca/" class="">认证学员</a>
+            <i class="nopro-icon"></i>            <span></span>
+        </li>
+		<li><a href="/setting/vip/" class="">我的VIP</a></li>
+		<li><a href="/setting/jkb/" class="">我的极客币</a></li>
+		<li><a href="/setting/order/" class="">我的订单</a></li>
+		<li><a href="/setting/security/" class="">账号安全</a></li>
+		<li><a href="/setting/message/" class="">消息设置</a></li>
+		<li><a href="/setting/sns/" class="">绑定第三方账号</a></li>
+	</ul>
+</nav>
+        <div class="main">
+            <h2>个人资料</h2>
+            <section class="basic">
+                <h3>基本信息</h3>
+                <form id="basicForm" action="/api/setUserInfo">
+                    <ul>
+                        <li>
+                            <label for="">头像</label>
+                            <div class="inputbox">
+                                <div class="portrait-box"><img class="headpic" src="<?php echo $user_info['logo'] ? $user_info['logo'] : '/public/static/public/face/'.$user_info['face'].'.png';?>">
+                                    <p class="change" id="setPhoto"><span>修改</span></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="uname">用户名</label>
+                            <div class="inputbox">
+                                <span class="username"><?php echo $user_info['username'];?></span>
+                                <input type="text" id="uname" maxlength="30">
+																	<span id="changeUsername">修改用户名</span>
+								                                <div class="changeuser-btns">
+                                    <button class="confirm green-btn" id="usernameSubBtn">确定</button>
+                                    <button class="cancel cancel-btn" id="usernameCanBtn">取消</button>
+                                </div>
+                                <span class="ex-tips username-tips" id="usernameTips">用户名作为在网站内的昵称显示，只可修改一次</span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="truename">邮箱</label>
+                            <div class="inputbox">
+                                <input type="text" name="email" value="<?php echo $user_info['email'];?>">
+                            </div>
+                        </li>
+                        <li>
+                            <label for="truename">真实姓名</label>
+                            <div class="inputbox">
+                                <input type="text" id="truename" name="realname" value="<?php echo $user_info['realname'];?>" maxlength="30">
+                                <span class="ex-tips">仅用户自己可见</span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="usex">性别</label>
+                            <div class="inputbox">
+                                <span class="select-box-sex"><select id="usex" name="gender">
+                                    <option value="保密" selected>保密</option> gender
+                                    <option value="男" >男</option>
+                                    <option value="女" >女</option>
+                                </select></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="calendar">生日</label>
+                            <div class="inputbox">
+                                <input id="calendar" class="laydate-icon" type="text" name="birthday" value="">
+                            </div>
+                        </li>
+                        <li>
+                            <label for="calendar">QQ</label>
+                            <div class="inputbox">
+                                <input class="laydate-icon" type="text" name="qq" value="<?php echo $user_info['qq'];?>">
+                            </div>
+                        </li>
+                        <li>
+                            <label>现居住地</label>
+                            <div class="inputbox">
+                                <span class="select-box-home"><select class="select-home" name="provice_id" id="proviceSel" data-value="0">
+                                    <option value="0">省</option>
+                                </select></span>
+                                <span class="select-box-home"><select class="select-home" name="city_id" id="citySel" data-value="0">
+                                    <option value="0">市</option>
+                                </select></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="">个人简介</label>
+                            <div class="inputbox">
+                                <textarea id="basArea" placeholder="一句话介绍一下自己吧，让别人更了解你" maxlength="200" name="description"></textarea>
+                                <p class="extra-tips">还可以输入 <span id="tipsNum">200</span> 字</p>
+                            </div>
+                        </li>
+                    </ul>
+					 <input type='hidden' name='stoken' id='stoken' value='9a32a441227478fabe2ba9c774afc4aa' />                    <button type="button" class="green-btn">保存</button>
+                </form>
+            </section>
+            <section class="zhiye">
+                <h3>职业信息</h3>
+                <ul>
+                    <li>
+                        <label for="">职业状态</label>
+                        <div class="status-pop">
+															 <a id="zyStatus" class="zhiye-popup">添加职业状态</a> 
+							                        </div>
+                    </li>
+                    <li>
+                        <label for="">职业方向</label>
+                        <div class="dir-pop">
+															 <a id="zyDirection" class="zhiye-popup">添加感兴趣的职业方向</a>
+								
+                            
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="domain">
+                <h3>个性域名</h3>
+                <div class="domain-area">
+                    <label for="">我的个性域名</label>
+					<a class="domain-area-setup">设置个性域名</a><span class="domain-area-url">http://my.jikexueyuan.com/<em id="sucDomain"></em></span>                    
+                    <!-- <span class="domain-area-url">my.jikexueyuan.com/<em id="sucDomain"></em></span> -->
+                    <div class="domain-area-input" style="display: none">
+                        <span class="pre">my.jikexueyuan.com/</span>
+                        <input type="text" id="domainChange" maxlength="25" value="">
+                        <span class="tip">支持小写英文字母/下划线/数字，25个字符以内，设定后不可修改</span>
+                        <div class="btns">
+                            <button class="confirm green-btn" id="domainBtn">确定</button>
+                            <button class="cancel cancel-btn">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+		<!-- 修改头像 -->
+        <div class="popup" style="display: none;" id="setPhotoPop">
+            <header>
+                <h2>修改头像</h2>
+                <i class="close popclose"></i>
+            </header>
+            <div class="wrap">
+                <div class="bd">
+                    <p id="swfContainer">
+                        本组件需要安装Flash Player后才可使用，请从<a href="http://www.adobe.com/go/getflashplayer">这里</a>下载安装。
+                    </p>
+                    <!-- <button type="button" id="upload" style="display:none;margin-top:8px;">上传</button> -->
+                </div>
+            </div>
+        </div>
+        <!-- /setPhotoPop -->
+        <div class="popup" id="statusPop" style="display: none;">
+            <header>
+                <h2>添加职业状态</h2>
+                <i class="close popclose"></i>
+            </header>
+            <div class="wrap">
+                <h3>请选择您当前的职业状态：</h3>
+                <ul class="status-ul cf" id="statusBtns">
+                    <li data-value='1'>学生</li>
+                    <li data-value='2'>在职</li>
+                    <li data-value='3'>待业</li>
+                </ul>
+                <div class="status-selects" style="display: none;">
+                    <span><select id="select-one"></select></span>
+                    <span><select id="select-two"></select></span>
+                </div>
+                <div class="status-btns">
+                    <button class="confirm gray-btn" id="zhiyeSub">确定</button>
+                    <button class="cancel cancel-btn popclose">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="directionPopone" style="display: none;">
+            <header>
+                <h2>添加感兴趣的职业方向（1/2）</h2>
+                <i class="close popclose"></i>
+            </header>
+            <div class="wrap part1">
+                <h3>请选择你感兴趣的职业方向（最多可选择3个）</h3>
+                <ul id="directionUl" class="cf">
+                </ul>
+                <div class="direction-btns cf">
+                    <button class="confirm gray-btn" id="dirSubbtn1">确定</button>
+                    <button class="cancel cancel-btn popclose">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="popup" id="directionPoptwo" style="display: none;">
+            <header>
+                <h2>添加感兴趣的职业方向（2/2）</h2>
+                <i class="close popclose"></i>
+            </header>
+            <div class="wrap part2">
+                <h3>您在这些方向上当前的水平如何？</h3>
+                <ul id="dirlevelUl">
+                </ul>
+                <div class="direction-btns cf">
+                    <button class="confirm gray-btn" id="dirSubbtn2">确定</button>
+                    <button class="cancel cancel-btn popclose">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	<!-- /popup -->
+</body>
+<script type="text/javascript" src="/public/static/start/js/form.js"></script>
+</html>

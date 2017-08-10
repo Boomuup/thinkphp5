@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>七里香-微信登录</title>
+    <script src="/public/static/public/js/jquery-1.11.3.min.js"></script>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <style>
+        .username {
+            background:url() 10px 5px no-repeat #fff;
+            position: absolute;
+            z-index: 10
+        }
+        .password {
+            background:url() 10px -56px no-repeat #fff;
+            position: absolute;
+            z-index: 10
+        }
+        input, button, select, textarea {
+            outline:none
+        }
+        textarea {
+            resize:none
+        }
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+            border: 1px solid #CCC!important;
+        }
+    </style>
+</head>
+<body class="sign-in external new" style="">
+<div class="container animated fadeIn">
+    <div class="login-wrapper">
+        <div class="login_top"></div>
+        <div id="login_container" style="text-align:center;">
+            <script>
+                var obj = new WxLogin({
+                    id: "login_container",
+                    appid: "<?php echo $appid;?>",
+                    scope: "snsapi_login", //应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login即可
+                    redirect_uri: "<?php echo urlencode(url('www.iouhai.top'));?>",//重定向地址，需要进行UrlEncode
+                    state: "",
+                    style: "",//提供"black"、"white"可选
+                    href: ""  //自定义样式链接，第三方可根据实际需求覆盖默认样式。
+                });
+            </script>
+            <a href="<?php echo url('start/index/index');?>">返回</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

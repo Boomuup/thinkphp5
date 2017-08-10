@@ -1,0 +1,38 @@
+*{include file="/index/user/_meta"/}*
+<title>绑定第三方账号</title>
+<script src="/public/static/start/js/user/bind_account.js"></script>
+</head>
+<body>
+*{include file="/index/nav"/}*
+<div class="wrapper">
+    *{include file="/index/user/left_menu"/}*
+    <div class="main">
+        <h2>绑定第三方账号</h2>
+        <div class="sns">
+            <ul class="multi-line third">
+                <li>
+                    <label><i class="Hui-iconfont" style="font-size: 35px;color: #00a0e9">&#xe67b;</i></label>
+                    <span>QQ <span class="ora">( <?php echo $userinfo['qq_openid'] ? '已绑定':'未绑定' ;?> )</span></span>
+                    <?php if($userinfo['qq_openid']){?>
+                        <a id="unbindQQ" class="unbindBtn" href="javascript:;" >解除绑定</a>
+                    <?php }else{?>
+                        <a id="bindQQ" class="unbindBtn" href="javascript:;" >绑定QQ账号</a>
+                    <?php }?>
+                </li>
+
+                <li>
+                    <label><i class="Hui-iconfont" style="font-size: 35px;color: #00a65a;">&#xe694;</i></label>
+                    <span>微信账号 <span class="ora">( <?php echo ($userinfo['weixin_openid'] or $userinfo['weixin_unionid']) ? '已绑定':'未绑定' ;?> )</span></span>
+                    <?php if($userinfo['weixin_openid'] or $userinfo['weixin_unionid']){?>
+                        <a id="unbindWeixin" class="unbindBtn" href="javascript:;" >解除绑定</a>
+                    <?php }else{?>
+                        <input type="hidden" class="weixin-bind-url" value="<?php echo url('start/user/weixin_bind');?>">
+                        <a id="bindWeixin" onclick="weixin_account(this,1);" class="unbindBtn" href="javascript:;" >绑定微信账号</a>
+                    <?php }?>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
